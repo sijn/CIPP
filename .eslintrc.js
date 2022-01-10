@@ -1,29 +1,26 @@
 module.exports = {
-  env: {
-    browser: true,
-    node: true,
-    jquery: true,
-  },
+  // parser: '@typescript-eslint/parser', // Specifies the ESLint parser
   parserOptions: {
-    ecmaVersion: 2017,
-    sourceType: 'script',
+    ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
+    sourceType: 'module', // Allows for the use of imports
+    ecmaFeatures: {
+      jsx: true, // Allows for the parsing of JSX
+    },
   },
-  plugins: ['html'],
   settings: {
-    'html/indent': '+2',
+    react: {
+      version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
+    },
   },
   extends: [
-    'eslint:recommended',
+    'react-app',
+    'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
     'plugin:prettier/recommended', // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
   ],
-  globals: {
-    feather: 'readonly',
-    bootstrap: 'readonly',
-  },
+  plugins: ['react', 'react-hooks'],
   rules: {
+    'react/no-children-prop': 'off', // disabled for react router v6
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
-    'no-var': 'warn',
-    'no-unused-vars': 'warn',
   },
-};
+}
